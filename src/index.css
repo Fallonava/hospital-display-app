@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #0B0E14;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
