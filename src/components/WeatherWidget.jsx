@@ -21,8 +21,8 @@ export default function WeatherWidget() {
     const IconComponent = IconMap[icon] || Cloud;
 
     return (
-        <div className="flex flex-col items-center bg-white/5 border border-white/10 rounded-3xl p-6 shadow-2xl transition-all duration-500 hover:bg-white/10 w-full min-w-[280px]"
-            style={{ WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}>
+        <div className="flex flex-col items-center border rounded-3xl p-6 shadow-2xl transition-all duration-500 hover:bg-white/10 w-full min-w-[280px]"
+            style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)', WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}>
             <h3 className="text-white/60 text-sm font-semibold tracking-widest uppercase mb-4 w-full text-center border-b border-white/10 pb-3 block">
                 Cuaca • {store.city}
             </h3>

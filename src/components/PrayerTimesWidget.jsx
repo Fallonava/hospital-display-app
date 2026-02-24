@@ -7,8 +7,8 @@ export default function PrayerTimesWidget() {
     const { times, isLoading, error } = usePrayerTimes(store.latitude, store.longitude);
 
     return (
-        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 shadow-2xl transition-all duration-500 hover:bg-white/10 w-full mt-6"
-            style={{ WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}>
+        <div className="rounded-3xl p-6 shadow-2xl transition-all duration-500 hover:bg-white/10 w-full mt-6 border"
+            style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)', WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}>
             <h3 className="text-white/60 text-sm font-semibold tracking-widest uppercase mb-4 w-full text-center border-b border-white/10 pb-3 block">
                 Jadwal Sholat ({store.city})
             </h3>
@@ -28,7 +28,7 @@ export default function PrayerTimesWidget() {
                             <span className="flex text-emerald-400/80 text-xs font-bold tracking-wider uppercase mb-2">
                                 {name}
                             </span>
-                            <span className="text-2xl font-black text-slate-100 tracking-tight bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/50">
+                            <span className="text-2xl font-black text-slate-100 tracking-tight px-4 py-2 rounded-xl border" style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', borderColor: 'rgba(30, 41, 59, 0.5)' }}>
                                 {time}
                             </span>
                         </div>

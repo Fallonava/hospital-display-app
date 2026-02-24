@@ -21,17 +21,18 @@ export default function ErrorOverlay({ isVisible, message, isOffline }) {
     return (
         <div
             // Menggunakan z-index tinggi, tapi tepat di bawah Emergency (9999)
-            className={`fixed inset-0 z-[9000] flex items-center justify-center bg-amber-950/95 backdrop-blur-xl transition-all duration-500
+            className={`fixed inset-0 z-[9000] flex items-center justify-center transition-all duration-500
         ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}
       `}
+            style={{ backgroundColor: 'rgba(69, 26, 3, 0.95)', WebkitBackdropFilter: 'blur(24px)', backdropFilter: 'blur(24px)' }}
         >
             <div className="relative flex flex-col items-center justify-center w-full h-full text-center p-12 overflow-hidden">
 
                 {/* Soft Amber Glow Effects */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-600/30 rounded-full blur-[120px] pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(217, 119, 6, 0.3)', WebkitFilter: 'blur(120px)', filter: 'blur(120px)' }}></div>
 
                 <div className="relative z-10 w-full max-w-5xl">
-                    <div className="mb-8 inline-flex items-center justify-center p-8 bg-amber-500/20 rounded-full border-2 border-amber-500/30 shadow-lg relative">
+                    <div className="mb-8 inline-flex items-center justify-center p-8 rounded-full border-2 shadow-lg relative" style={{ backgroundColor: 'rgba(245, 158, 11, 0.2)', borderColor: 'rgba(245, 158, 11, 0.3)' }}>
                         {/* Indikator Titik Peringatan */}
                         <span className="absolute top-2 right-2 flex w-4 h-4">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -56,7 +57,7 @@ export default function ErrorOverlay({ isVisible, message, isOffline }) {
                         {isOffline ? "Gangguan Jaringan" : "Pemberitahuan Sistem"}
                     </h1>
 
-                    <p className="text-[2.2vw] font-medium text-amber-100 max-w-4xl mx-auto leading-relaxed px-8 py-6 bg-black/30 rounded-2xl border border-amber-500/20 backdrop-blur-sm">
+                    <p className="text-[2.2vw] font-medium text-amber-100 max-w-4xl mx-auto leading-relaxed px-8 py-6 rounded-2xl border" style={{ backgroundColor: 'rgba(0,0,0,0.3)', borderColor: 'rgba(245, 158, 11, 0.2)', WebkitBackdropFilter: 'blur(4px)', backdropFilter: 'blur(4px)' }}>
                         {message || defaultMessage}
                         <br />
                         <span className="text-[1.5vw] text-amber-400/80 mt-4 block font-normal">
