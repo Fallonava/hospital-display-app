@@ -22,10 +22,10 @@ export default function Display() {
 
     return (
         <div className="relative w-screen h-screen overflow-hidden bg-slate-950 flex items-center justify-center">
-            {/* Background Decor */}
+            {/* Background Decor (WebkitFilter untuk Chrome jadul) */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-600/20 rounded-full blur-[150px]"></div>
+                <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full" style={{ WebkitFilter: 'blur(120px)', filter: 'blur(120px)' }}></div>
+                <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-600/20 rounded-full" style={{ WebkitFilter: 'blur(150px)', filter: 'blur(150px)' }}></div>
             </div>
 
             {/* Interface Elements */}

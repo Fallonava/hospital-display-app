@@ -18,15 +18,16 @@ export default function RestOverlay({ isVisible }) {
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl transition-all duration-1000 pb-20
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/80 transition-all duration-1000 pb-20
         ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}
       `}
+            style={{ WebkitBackdropFilter: 'blur(24px)', backdropFilter: 'blur(24px)' }}
         >
             <div className="relative flex flex-col items-center max-w-5xl text-center px-12 py-20 rounded-[3rem] border border-white/10 bg-white/5 shadow-2xl overflow-hidden">
 
-                {/* Glow Effects */}
-                <div className="absolute -top-32 -left-32 w-64 h-64 bg-teal-500/30 rounded-full blur-[100px]"></div>
-                <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-emerald-500/20 rounded-full blur-[100px]"></div>
+                {/* Glow Effects (Pakai inline WebkitFilter untuk Chrome Jadul) */}
+                <div className="absolute -top-32 -left-32 w-64 h-64 bg-teal-500/30 rounded-full" style={{ WebkitFilter: 'blur(100px)', filter: 'blur(100px)' }}></div>
+                <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-emerald-500/20 rounded-full" style={{ WebkitFilter: 'blur(100px)', filter: 'blur(100px)' }}></div>
 
                 <div className="relative z-10">
                     <div className="mb-8 inline-flex items-center justify-center p-6 bg-teal-500/20 rounded-full animate-bounce">
