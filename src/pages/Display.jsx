@@ -5,6 +5,8 @@ import Clock from '../components/Clock';
 import RestOverlay from '../components/RestOverlay';
 import EmergencyOverlay from '../components/EmergencyOverlay';
 import ErrorOverlay from '../components/ErrorOverlay';
+import WeatherWidget from '../components/WeatherWidget';
+import PrayerTimesWidget from '../components/PrayerTimesWidget';
 
 export default function Display() {
     const { formattedTime, formattedDate, isRestTime, seconds } = useTime();
@@ -26,12 +28,29 @@ export default function Display() {
                 <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-600/20 rounded-full blur-[150px]"></div>
             </div>
 
-            {/* Main Clock UI */}
-            <Clock
-                formattedTime={formattedTime}
-                formattedDate={formattedDate}
-                seconds={seconds}
-            />
+            {/* Interface Elements */}
+            <div className="absolute inset-0 z-10 p-10 flex flex-col justify-between pointer-events-none">
+                {/* Top Row: Weather Widget */}
+                <div className="flex justify-end p-2 pointer-events-auto">
+                    <div className="w-[320px]">
+                        <WeatherWidget />
+                    </div>
+                </div>
+
+                {/* Main Clock UI (Centered via Absolute to ignore flex layout flow) */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] pointer-events-auto">
+                    <Clock
+                        formattedTime={formattedTime}
+                        formattedDate={formattedDate}
+                        seconds={seconds}
+                    />
+                </div>
+
+                {/* Bottom Row: Prayer Times Widget */}
+                <div className="flex justify-center p-2 mb-4 pointer-events-auto w-full max-w-4xl mx-auto">
+                    <PrayerTimesWidget />
+                </div>
+            </div>
 
             {/* Rest Time Overlay (Hospital Context Teal/Emerald) */}
             <RestOverlay isVisible={showRestOverlay} />

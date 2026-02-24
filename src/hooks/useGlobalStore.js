@@ -8,6 +8,10 @@ const DEFAULT_STATE = {
     isSystemError: false,
     systemErrorMessage: '',
     isNetworkOffline: !navigator.onLine,
+    // Lokasi Default (Jakarta, Indonesia)
+    city: 'Jakarta',
+    latitude: -6.2088,
+    longitude: 106.8456,
 };
 
 export function useGlobalStore() {

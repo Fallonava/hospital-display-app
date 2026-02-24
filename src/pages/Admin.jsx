@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGlobalStore } from '../hooks/useGlobalStore';
-import { AlertTriangle, Clock, ShieldAlert, MonitorPlay, Save, WifiOff } from 'lucide-react';
+import { AlertTriangle, Clock, ShieldAlert, MonitorPlay, Save, WifiOff, MapPin } from 'lucide-react';
 
 export default function Admin() {
     const { store, updateStore } = useGlobalStore();
@@ -8,6 +8,11 @@ export default function Admin() {
     // Local state untuk input sebelum di-save/broadcast ke seluruh layar
     const [localMessage, setLocalMessage] = useState(store.emergencyMessage);
     const [localErrorMessage, setLocalErrorMessage] = useState(store.systemErrorMessage);
+
+    // Local state untuk Pengaturan Lokasi
+    const [localCity, setLocalCity] = useState(store.city);
+    const [localLat, setLocalLat] = useState(store.latitude);
+    const [localLng, setLocalLng] = useState(store.longitude);
 
     const handleToggleRest = () => {
         updateStore({ forceRestMode: !store.forceRestMode });
@@ -36,6 +41,15 @@ export default function Admin() {
         updateStore({ systemErrorMessage: localErrorMessage });
     };
 
+    const handleUpdateLocation = () => {
+        updateStore({
+            city: localCity,
+            latitude: parseFloat(localLat),
+            longitude: parseFloat(localLng)
+        });
+        alert(`Lokasi diperbarui ke: ${localCity}`);
+    };
+
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 p-8 font-sans">
             <div className="max-w-4xl mx-auto space-y-8">
@@ -56,6 +70,69 @@ export default function Admin() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    {/* Panel Pengaturan Lokasi (Widget Cuaca & Sholat) */}
+                    <div className="md:col-span-2 p-8 rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col md:flex-row gap-8 items-stretch mb-2">
+                        <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-3 rounded-xl bg-indigo-100 text-indigo-600">
+                                    <MapPin size={24} />
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-bold text-slate-800">Pengaturan Lokasi (Cuaca & Sholat)</h2>
+                                    <p className="text-sm text-slate-500">Sesuaikan dengan lokasi Cabang Rumah Sakit</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 p-6 rounded-2xl">
+                                <p className="text-sm text-slate-600 leading-relaxed">
+                                    Perubahan ini akan otomatis memperbarui data <strong>Cuaca</strong> dan <strong>Jadwal Sholat</strong> di layar utama. Gunakan format desimal untuk koordinat.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex-1 flex flex-col space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">Nama Kota</label>
+                                <input
+                                    type="text"
+                                    value={localCity}
+                                    onChange={(e) => setLocalCity(e.target.value)}
+                                    className="w-full border border-slate-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                />
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="flex-1">
+                                    <label className="block text-sm font-medium text-slate-700 mb-2">Latitude (Garis Lintang)</label>
+                                    <input
+                                        type="number"
+                                        step="0.000001"
+                                        value={localLat}
+                                        onChange={(e) => setLocalLat(e.target.value)}
+                                        className="w-full border border-slate-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                    />
+                                </div>
+                                <div className="flex-1">
+                                    <label className="block text-sm font-medium text-slate-700 mb-2">Longitude (Garis Bujur)</label>
+                                    <input
+                                        type="number"
+                                        step="0.000001"
+                                        value={localLng}
+                                        onChange={(e) => setLocalLng(e.target.value)}
+                                        className="w-full border border-slate-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex mt-auto pt-2">
+                                <button
+                                    onClick={handleUpdateLocation}
+                                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-indigo-200"
+                                >
+                                    <Save size={20} /> Simpan Lokasi Baru
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Panel Kontrol Darurat */}
                     <div className={`p-8 rounded-3xl border-2 transition-colors duration-300 ${store.isEmergencyActive ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-white shadow-sm'}`}>
