@@ -53,7 +53,9 @@ export default function ErrorOverlay({ isVisible, message, isOffline }) {
                         )}
                     </div>
 
-                    <h1 className="text-[5vw] font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300 leading-tight mb-6 drop-shadow-md">
+                    {/* Tambahkan style warna baku fallback amber-400 agar text tidak hilang di Chrome jadul */}
+                    <h1 className="text-[5vw] font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300 leading-tight mb-6 drop-shadow-md"
+                        style={{ color: '#fbbf24', WebkitTextFillColor: 'transparent' }}>
                         {isOffline ? "Gangguan Jaringan" : "Pemberitahuan Sistem"}
                     </h1>
 

@@ -37,7 +37,9 @@ export default function RestOverlay({ isVisible }) {
                         </svg>
                     </div>
 
-                    <h1 className="text-[6.5vw] font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-emerald-300 leading-tight mb-6 drop-shadow-lg">
+                    {/* Tambahkan style warna baku (teal-400 fallback) karena bg-clip-text sering error di Chrome jadul membuat text malah tembus pandang/hilang */}
+                    <h1 className="text-[6.5vw] font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-emerald-300 leading-tight mb-6 drop-shadow-lg"
+                        style={{ color: '#2dd4bf', WebkitTextFillColor: 'transparent' }}>
                         Waktu Istirahat Pelayanan
                     </h1>
 
